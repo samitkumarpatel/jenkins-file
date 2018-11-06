@@ -1,6 +1,8 @@
 # jenkins-file
 janekins file example
 
-* good example can be found (here)[https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/jenkinsfile-examples/mavenDocker.groovy]
+# Example 
+  * [https://github.com/jenkinsci/pipeline-examples/blob/master/declarative-examples/jenkinsfile-examples/mavenDocker.groovy]
+  * [https://gist.github.com/merikan/228cdb1893fca91f0663bab7b095757c]
 
-* for (this)[https://jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#writemavenpom-write-a-maven-project-file] , install ```pipeline-utility-steps``` jenkins plugins
+> for this declarative pipeline sysntex [https://jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#writemavenpom-write-a-maven-project-file] , make sure you have ```pipeline-utility-steps``` jenkins plugins installed
