@@ -1,4 +1,5 @@
 pipeline {
+    @Library(value="jenkins-shared-lib@master", changelog=true)
     agent any
     environment {
         CRED = credentials('github')
@@ -23,7 +24,6 @@ pipeline {
         stage('shared lib'){
             steps {
                 script {
-                    @Library(value="jenkins-shared-lib@master", changelog=true)
                     buildset(file=pom.xml)
                 }
             }
