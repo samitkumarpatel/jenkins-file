@@ -1,5 +1,5 @@
 pipeline {
-    def x = 10;
+    int x = 10;
     agent any
     environment {
         CRED = credentials('github')
