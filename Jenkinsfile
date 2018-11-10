@@ -12,6 +12,12 @@ pipeline {
                 sh 'env'
             }
         }
+        stage('credentil'){
+            steps {
+                x = credentials('github')
+                echo "the credential is :${x}"
+            }
+        }
     }
     post { 
         always { 
