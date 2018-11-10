@@ -27,9 +27,8 @@ pipeline {
                script {
                     log.info 'Starting'
                     log.warning 'Nothing to do!'
-                    buildset
                }
-               
+               buildset file="samit"
             }
         }
     }
