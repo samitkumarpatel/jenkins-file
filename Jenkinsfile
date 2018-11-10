@@ -4,9 +4,12 @@ pipeline {
         stage('checkout') {
             steps {
                checkout scm
-               echo "PRINT all the env varibale - groovy and sh will be next ${env}"
-               echo "**************************************************************"
-               sh 'env'
+            }
+        }
+        stage('env vars details'){
+            steps {
+                echo "from groovy the env var can be fetch like - ${env.JOB_NAME}"
+                sh 'env'
             }
         }
     }
