@@ -14,7 +14,7 @@ pipeline {
         }
         stage('credentil'){
             steps {
-                x = credentials('github')
+                def x = credentials('github')
                 echo "the credential is :${x}"
             }
         }
