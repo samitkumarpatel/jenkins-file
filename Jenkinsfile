@@ -1,6 +1,6 @@
+ #!groovy
+@Library('jenkins-shared-lib@master')
 pipeline {
-    #!groovy
-    @Library('jenkins-shared-lib@master')
     agent any
     environment {
         CRED = credentials('github')
