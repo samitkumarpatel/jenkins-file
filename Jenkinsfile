@@ -23,7 +23,8 @@ pipeline {
         stage('shared lib'){
             steps {
                 script {
-                    library('jenkins-shared-lib@master').buildset()
+                    @Library(value="jenkins-shared-lib@master", changelog=true)
+                    buildset(file=pom.xml)
                 }
             }
         }
