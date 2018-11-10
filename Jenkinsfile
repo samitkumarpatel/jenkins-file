@@ -4,6 +4,8 @@ pipeline {
         stage('checkout') {
             steps {
                checkout scm
+               echo "PRINT all the env varibale - groovy and sh will be next ${env}"
+               echo "**************************************************************"
                sh 'env'
             }
         }
