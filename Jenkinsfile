@@ -23,7 +23,7 @@ pipeline {
         }
         stage('shared lib'){
             steps {
-                buildset
+               echo "${_}"
             }
         }
     }
