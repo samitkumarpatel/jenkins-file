@@ -23,7 +23,7 @@ pipeline {
         stage('shared lib'){
             steps {
                 script {
-                    library('jenkins-shared-lib').buildset()
+                    library('jenkins-shared-lib@master').buildset()
                 }
             }
         }
