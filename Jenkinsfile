@@ -5,7 +5,7 @@ pipeline {
             steps {
                checkout scm
                echo "checkout compleated from env.BRANCH_NAME"
-               sh -c 'echo the brach the build had was : $BRANCH_NAME'
+               sh 'echo the brach the build had was : $BRANCH_NAME'
             }
         }
     }
