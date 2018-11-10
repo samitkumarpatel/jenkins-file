@@ -32,6 +32,11 @@ pipeline {
                buildset 'SAMIT'
             }
         }
+        stage('shared lib v2') {
+            steps {
+                tree()
+            }
+        }
     }
     post { 
         always { 
