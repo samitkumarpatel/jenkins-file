@@ -1,5 +1,4 @@
- #!groovy
-@Library('jenkins-shared-lib@master')
+@Library('jenkins-shared-lib@master')_
 pipeline {
     agent any
     environment {
