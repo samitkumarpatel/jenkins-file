@@ -28,7 +28,7 @@ pipeline {
                     log.info 'Starting'
                     log.warning 'Nothing to do!'
                }
-               buildset file=pom.xml
+               buildset file='pom.xml'
             }
         }
     }
