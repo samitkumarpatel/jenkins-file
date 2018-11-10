@@ -24,7 +24,10 @@ pipeline {
         }
         stage('shared lib'){
             steps {
-               echo "${_}"
+               script {
+                    log.info 'Starting'
+                    log.warning 'Nothing to do!'
+               }
             }
         }
     }
