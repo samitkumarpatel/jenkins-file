@@ -1,5 +1,4 @@
 pipeline {
-    @Library('jenkins-shared-lib')_
     agent any
     environment {
         CRED = credentials('github')
@@ -24,7 +23,7 @@ pipeline {
         stage('shared lib'){
             steps {
                 script {
-                    buildset()
+                    library('jenkins-shared-lib').buildset()
                 }
             }
         }
