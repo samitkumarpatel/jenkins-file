@@ -1,4 +1,5 @@
 pipeline {
+    def x = 10;
     agent any
     environment {
         CRED = credentials('github')
@@ -18,6 +19,11 @@ pipeline {
         stage('credentil'){
             steps {
                 echo "The credential is :${env.CRED}"
+            }
+        }
+        stage('shared lib'){
+            steps {
+                echo "The global vars x = ${x}"
             }
         }
     }
