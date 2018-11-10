@@ -22,8 +22,11 @@ pipeline {
             }
         }
         stage('shared lib'){
-            steps {
+            script {
                 buildset()
+            }
+            steps {
+               
             }
         }
     }
