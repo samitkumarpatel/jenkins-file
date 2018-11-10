@@ -1,5 +1,5 @@
 pipeline {
-    int x = 10;
+    @Library('jenkins-shared-lib')_
     agent any
     environment {
         CRED = credentials('github')
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('shared lib'){
             steps {
-                echo "The global vars x = ${x}"
+                buildset()
             }
         }
     }
