@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        CRED = credentials('github')
+    }
     stages {
         stage('checkout') {
             steps {
@@ -14,8 +17,7 @@ pipeline {
         }
         stage('credentil'){
             steps {
-                echo credentials('github')
-                echo "the credential is :${x}"
+                echo "The credential is :${env.CRED}"
             }
         }
     }
