@@ -2,6 +2,9 @@
 @Library('jenkins-shared-lib@master')_
 pipeline {
     agent any
+    triggers {
+        pollSCM('* * * * *')
+    }
     environment {
         CRED = credentials('github')
     }
@@ -35,6 +38,11 @@ pipeline {
         stage('shared lib v2') {
             steps {
                 tree()
+            }
+        }
+        stage('current build details') {
+            steps {
+               sh 'currentBuild'
             }
         }
     }
