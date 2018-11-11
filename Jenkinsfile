@@ -5,6 +5,9 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '1', artifactNumToKeepStr: '5'))
+    }
     environment {
         CRED = credentials('github')
     }
