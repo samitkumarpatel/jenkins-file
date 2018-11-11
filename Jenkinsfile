@@ -42,7 +42,7 @@ pipeline {
         }
         stage('current build details') {
             steps {
-               sh 'currentBuild'
+               echo "${currentBuild}"
             }
         }
     }
