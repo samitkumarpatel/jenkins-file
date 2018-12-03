@@ -50,13 +50,13 @@ pipeline {
         }
         stage('available env variable'){
             steps{
-                echo "${env.JOB_NAME}"
-                echo "${env.WORKSPACE}"
-                echo "${env.GIT_COMMIT}"
-                echo "${env.GIT_BRANCH}"
-                echo "${env.GIT_LOCAL_BRANCH}"
-                echo "${env.WORKSPACE}"
-                echo "${env.WORKSPACE}"
+                echo "JOB_NAME - ${env.JOB_NAME}"
+                echo "WORKSPACE - ${env.WORKSPACE}"
+                echo "GIT_COMMIT - ${env.GIT_COMMIT}"
+                echo "GIT_BRANCH - ${env.GIT_BRANCH}"
+                echo "GIT_LOCAL_BRANCH - ${env.GIT_LOCAL_BRANCH}"
+
+                echo "printenv"
             }
         }
     }
