@@ -1,0 +1,19 @@
+node {
+    docker.image('node:7-alpine').inside {
+        stage('Test') {
+            sh 'node --version'
+        }
+        stage('checkout') {
+            git credentialsId: 'credentialID', url: 'cloneUrl.git'
+        }
+        stage('install') {
+            sh 'npm install'
+        }
+        stage('test') {
+            sh 'npm test'
+        }
+        stage('deploy') {
+            echo "Got deploy successfully"
+        }
+    }
+}
