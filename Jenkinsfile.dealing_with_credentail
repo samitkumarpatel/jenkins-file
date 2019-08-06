@@ -1,0 +1,34 @@
+node('master') {
+    stage('clean') {
+        cleanWs()
+    }
+    stage('USER:PASS'){
+        // This will generate a USERNAME:PASSWORD kindof string ans assign that to USERPASS variable
+        //https://jenkins.io/doc/pipeline/steps/credentials-binding/ - has more example for this kind
+        withCredentials([usernameColonPassword(credentialsId: 'jenkins_ssh', variable: 'USERPASS')]) {
+            sh '''
+              echo "$USERPASS" >> s.txt
+            '''
+        }
+    }
+    stage('TOKEN') {
+        withCredentials([string(credentialsId: 'mytoken', variable: 'TOKEN')]) {
+            sh '''
+              set +x
+              echo "$TOKEN" >> s.txt
+            '''
+        }
+    }
+    stage('AZURE PRNCPLE') {
+        withCredentials([azureServicePrincipal(credentialsId: 'azure_principle', 
+                            clientIdVariable: 'CLIENT_ID', 
+                            clientSecretVariable: 'CLIENT_SECRET',
+                            subscriptionIdVariable: 'SUBSCRIPTION_ID',
+                            tenantIdVariable: 'TENANT_ID')]) {
+            sh '''
+              set +x
+              echo "$CLIENT_ID:$CLIENT_SECRET:$SUBSCRIPTION_ID:$TENANT_ID" >> s.txt
+            '''
+        }
+    }
+}
