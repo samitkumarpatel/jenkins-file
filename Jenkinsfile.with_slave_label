@@ -1,0 +1,35 @@
+node('master') {
+    stage('version') {
+        sh """
+         whoami
+         uname -a
+         java -version
+        """
+    }
+}
+
+println "************************"
+
+node('ubuntu') {
+    stage('version') {
+        sh """
+         whoami
+         uname -a
+         java -version
+         docker version
+        """
+    }
+}
+
+println "************************"
+
+node('slave-01') {
+    stage('version') {
+        sh """
+         whoami
+         uname -a
+         java -version
+         docker version
+        """
+    }
+}
