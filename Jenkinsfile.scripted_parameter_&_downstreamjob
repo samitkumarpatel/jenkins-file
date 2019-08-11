@@ -1,0 +1,28 @@
+#Upstream Job
+node("master") {
+    stage('call a job') {
+        paramAValue = "paramAValue"
+        paramBValue = "paramBValue"
+        build job: 'downstream-freestyle', parameters: [[$class: 'StringParameterValue', name: 'ParamA', value: paramAValue], [$class: 'StringParameterValue', name: 'ParamB', value: paramBValue]]
+    }
+}
+    
+
+# downstream Job
+node("master") {
+    properties([
+        parameters(
+            [
+                string(defaultValue: 'hello A', name: 'ParamA'),
+                string(defaultValue: 'Hello B', name: 'ParamB')
+            ]
+        )
+    ])
+    
+    stage('stage') {
+        sh """
+            echo "print upstream parameter"
+        """
+        echo "${params}"
+    }
+}
