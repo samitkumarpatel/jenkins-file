@@ -1,0 +1,7 @@
+stage 'deployment'
+input 'Do you approve deployment?'
+node{
+    stage('deployment'){
+        sh 'echo "Hello World!"'
+    }
+}
