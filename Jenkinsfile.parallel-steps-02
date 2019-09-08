@@ -1,0 +1,17 @@
+def numbers=[1,2,3,4,5,6,7,8,9,10]
+node('macbook_slave01') {
+    stage('count'){
+        print(numbers)
+    }
+    stage('parallel') {
+        parallel 'numbers x 2':{
+           numbers.each {
+             print(it * 2)
+           } 
+        }, 'numbers x 3':{
+           numbers.each {
+             print(it * 3)
+           }
+        }
+    }
+}
