@@ -1,0 +1,14 @@
+def dockderInfo(){
+    stage('docker images'){
+        sh "docker images"
+    }
+}
+parallel 'ubuntu':{
+    node('u_slave01'){
+        dockderInfo()
+    }
+}, 'mac':{
+    node('macbook_slave01'){
+        dockderInfo()
+    }
+}
