@@ -1,0 +1,23 @@
+// Enable parameter for Jenkinsfile
+node {
+  properties([
+    parameters([
+      string(name: 'submodule', defaultValue: ''),
+      string(name: 'submodule_branch', defaultValue: ''),
+      string(name: 'commit_sha', defaultValue: ''),
+    ])
+  ])
+}
+
+// Enable scm crone
+node {
+  def triggers = []
+  if (env.BRANCH_NAME == "master") {
+      triggers << cron('H H(0-2) * * *')
+  }
+  properties (
+      [
+          pipelineTriggers(triggers)
+      ]
+  )
+}
