@@ -1,0 +1,12 @@
+def majorVersion=1
+def minorVersion=0
+node{
+    stage("variable") {
+        println "evaluate version from groovy - $majorVersion.$minorVersion"
+        println "v$majorVersion.$minorVersion"
+        sh """
+            echo "evaluate version from shell - $majorVersion.$minorVersion"
+            echo "v$majorVersion.$minorVersion"
+        """
+    }
+}
