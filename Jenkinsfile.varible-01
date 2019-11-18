@@ -6,7 +6,7 @@ node{
         println "v$majorVersion.$minorVersion"
         sh """
             echo "evaluate version from shell - $majorVersion.$minorVersion"
-            echo "v$majorVersion.$minorVersion"
+            echo "$majorVersion.$minorVersion"
         """
     }
 }
