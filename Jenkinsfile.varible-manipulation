@@ -1,0 +1,17 @@
+//variable maipulation in groovy as well as in sh
+node {
+    def x=10
+    stage('groovy') {
+        x=20
+    }
+    stage('sh') {
+        x=sh(script: """
+         y=$x
+         echo \$y
+        """,returnStdout:true) 
+    }
+    stage('print') {
+        echo "groovy - ${x}"
+        sh "echo from shell $x"
+    }
+}
