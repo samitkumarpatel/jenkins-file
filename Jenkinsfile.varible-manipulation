@@ -2,16 +2,18 @@
 node {
     def x=10
     stage('groovy') {
+        //changing value of x with groovy way
         x=20
     }
     stage('sh') {
-        x=sh(script: """
-         y=$x
+        // changing value of x with sh way
+        x = sh(script: """
+         y=\$(( $x + 40 ))
          echo \$y
         """,returnStdout:true) 
     }
     stage('print') {
-        echo "groovy - ${x}"
-        sh "echo from shell $x"
+        echo "from groovy the value of x is: ${x}"
+        sh "echo from shell the value of x is:  $x"
     }
 }
