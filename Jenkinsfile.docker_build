@@ -1,0 +1,29 @@
+import java.text.SimpleDateFormat
+def date = new Date()
+def dateFormat = new SimpleDateFormat("dd-MM-yyyy-HHmm")
+def customTag="2.19.0-${dateFormat.format(date)}"
+def imageName="registry.net/jenkins-blueocean"
+def customImage
+def triggers = []
+if (env.BRANCH_NAME == "master") {
+    triggers << cron('H/15 * * * *')
+}
+properties (
+    [
+        pipelineTriggers(triggers)
+
+    ]
+)
+node{
+    stage('clean') { deleteDir() }
+    stage('checkout') { checkout scm }
+    stage('build') {
+        customImage = docker.build("${imageName}:${customTag}")
+    }
+    stage('push') {
+        //do login -if login is missing in the hosted Jenkins
+        customImage.push()
+        customImage.push('latest')
+    }
+    stage('notify') { echo "Yet to implement" }
+}
