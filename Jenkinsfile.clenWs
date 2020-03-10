@@ -1,0 +1,13 @@
+node {
+    stage('create') {
+        sh """
+          mkdir -p $WORKSPACE/.m2 $WORKSPACE/src $WORKSPACE/.sonar
+        """
+    }
+    stage('clean') {
+        cleanWs deleteDirs: true, patterns: [[pattern: '.m2', type: 'EXCLUDE'],[pattern: '.sonar', type: 'EXCLUDE']]
+    }
+    stage('stats') {
+        sh "ls -al $WORKSPACE"
+    }
+}
