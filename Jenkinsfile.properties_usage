@@ -1,6 +1,7 @@
 // Enable parameter for Jenkinsfile
 node {
   properties([
+    buildDiscarder(logRotator(daysToKeepStr: '3', numToKeepStr: '10')),
     parameters([
       string(name: 'submodule', defaultValue: ''),
       string(name: 'submodule_branch', defaultValue: ''),
