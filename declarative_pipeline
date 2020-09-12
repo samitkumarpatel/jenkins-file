@@ -1,0 +1,53 @@
+def x,y
+pipeline {
+    agent any;
+    stages {
+        stage('01') {
+            steps {
+                echo 'Building'
+                
+                script {
+                   x=10
+                   y=11
+                   print x
+                   print y
+                }
+            }
+        }
+        stage('02') {
+            steps {
+                echo 'Manipulation'
+                
+                script {
+                   x=x+1
+                   y=y/2
+                   print x
+                   print y
+                }
+            }
+        }
+        stage('03') {
+            steps {
+                echo 'Shared Library'
+                # from shared library 
+                sayHello "samit"
+                script {
+                   # from shared library
+                   log.info('INFO from script')
+                   log.warning('WARNING from script')
+                }
+            }
+        }
+    }
+    post {
+        always {
+            print "ALWAYS"
+        }
+        success {
+            print "PASS"
+        }
+        failure {
+            print "FAIL"
+        }
+    }
+}
