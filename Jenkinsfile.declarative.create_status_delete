@@ -1,0 +1,51 @@
+import hudson.model.*
+def jobR
+def jobName="job01"
+pipeline {
+    agent any;
+    stages {
+        stage('create') {
+            steps {
+                sh "echo CREATED"
+                script {
+                    jobR=build(job: jobName, parameters: [string(name:"message",value: "Hello World")], propagate: false, wait: true, quietPeriod: 5)
+                }
+            }
+        }
+        stage('status') {
+            steps {
+                sh "echo STATUS"
+                script {
+                    echo "Status : ${jobR.result}"
+                    println jobR.getResult()
+                    println jobR.getNumber()
+                    println jobR.getBuildVariables()
+                    println Jenkins.getInstance().getItemByFullName(jobName).getBuildByNumber(jobR.getNumber()).logFile.text
+                }
+            }
+            
+        }
+        stage('logs') {
+            steps {
+                sh "echo STATUS"
+                script {
+                    println Jenkins.getInstance().getItemByFullName(jobName).getBuildByNumber(jobR.getNumber()).logFile.text
+                }
+            }
+        }
+        stage('delete') {
+            when { expression { jobR.getResult()=="SUCCESS" } } 
+            steps {
+                sh "echo DELETE"
+                script {
+                    Jenkins.instance.getAllItems(Job.class).each{ Job job ->
+                        if(job.fullName==jobName) {
+                           job.delete()
+                           println "JOB DELETED SUCCESSFULLY ${job.fullName}"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
